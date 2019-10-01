@@ -1,5 +1,5 @@
 import "https://api.firecloud.org/ga4gh/v1/tools/scCloud:tasks/versions/24/plain-WDL/descriptor" as tasks
-# import "../cumulus/cumulus_tasks.wdl" as tasks
+# import "cumulus_tasks.wdl" as tasks
 
 workflow cumulus {
 	# Input file: can be either 10x, hdf5, loom, SCP compatible format, or a csv-formatted file containing information of each scRNA-Seq run
@@ -11,7 +11,7 @@ workflow cumulus {
 	# Reference genome name, can be None if you want culumus to infer it from data for you
 	String genome = ""
 
-	# scCloud version, default to "0.9.1"
+	# cumulus version, default to "0.9.1"
 	String? cumulus_version = "0.9.1"
 	# Google cloud zones, default to "us-east1-d us-west1-a us-west1-b"
 	String? zones = "us-east1-d us-west1-a us-west1-b"
@@ -87,7 +87,7 @@ workflow cumulus {
 	Float? gene_percent_cells
 	# Total counts per cell after normalization. [default: 1e5]
 	Float? counts_per_cell_after
-	# Highly variable feature selection method. <flavor> can be 'sccloud' or 'Seurat'. [default: sccloud]
+	# Highly variable feature selection method. <flavor> can be 'pegasus' or 'Seurat'. [default: pegasus]
 	String? select_hvf_flavor
 	# Select top <nfeatures> highly variable features. If <flavor> is 'Seurat' and <nfeatures> is 'None', select HVGs with z-score cutoff at 0.5. [default: 2000]
 	Int? select_hvf_ngenes
@@ -255,7 +255,7 @@ workflow cumulus {
 				select_only_singlets = select_only_singlets,
 				minimum_number_of_genes = minimum_number_of_genes,
 				dropseq_genome = dropseq_genome,
-				sccloud_version = sccloud_version,
+				cumulus_version = cumulus_version,
 				zones = zones,
 				memory = memory,
 				disk_space = disk_space,
@@ -335,7 +335,7 @@ workflow cumulus {
 			net_umap_out_basis = net_umap_out_basis,
 			run_net_fle = run_net_fle,
 			net_fle_out_basis = net_fle_out_basis,
-			sccloud_version = sccloud_version,
+			cumulus_version = cumulus_version,
 			zones = zones,			
 			num_cpu = num_cpu,
 			memory = memory,
@@ -344,7 +344,7 @@ workflow cumulus {
 	}
 
 	if (perform_de_analysis) {
-		call tasks.run_scCloud_de_analysis as de_analysis {
+		call tasks.run_cumulus_de_analysis as de_analysis {
 			input:
 				input_h5ad = cluster.output_h5ad,
 				output_name = out_name,
@@ -362,7 +362,7 @@ workflow cumulus {
 				annotate_de_test = annotate_de_test,
 				organism = organism,
 				minimum_report_score = minimum_report_score,
-				sccloud_version = sccloud_version,
+				cumulus_version = cumulus_version,
 				zones = zones,				
 				num_cpu = num_cpu,
 				memory = memory,
@@ -372,7 +372,7 @@ workflow cumulus {
 	}
 
 	if (defined(plot_composition) || defined(plot_tsne) || defined(plot_fitsne) || defined(plot_umap) || defined(plot_fle) || defined(plot_diffmap) || defined(plot_citeseq_fitsne) || defined(plot_net_tsne) || defined(plot_net_umap) || defined(plot_net_fle)) {
-		call tasks.run_scCloud_plot as plot {
+		call tasks.run_cumulus_plot as plot {
 			input:
 				input_h5ad = cluster.output_h5ad,
 				output_name = out_name,
@@ -386,7 +386,7 @@ workflow cumulus {
 				plot_net_tsne = plot_net_tsne,
 				plot_net_umap = plot_net_umap,
 				plot_net_fle = plot_net_fle,
-				sccloud_version = sccloud_version,
+				cumulus_version = cumulus_version,
 				zones = zones,
 				memory = memory,
 				disk_space = disk_space,
@@ -395,12 +395,12 @@ workflow cumulus {
 	}
 
 	if (generate_scp_outputs) {
-		call tasks.run_scCloud_scp_output as scp_output {
+		call tasks.run_cumulus_scp_output as scp_output {
 			input:
 				input_h5ad = cluster.output_h5ad,
 				output_name = out_name,
 				output_dense = output_dense,
-				sccloud_version = sccloud_version,
+				cumulus_version = cumulus_version,
 				zones = zones,
 				memory = memory,
 				disk_space = disk_space,
@@ -425,7 +425,7 @@ workflow cumulus {
 			output_pdfs = plot.output_pdfs,
 			output_htmls = plot.output_htmls,
 			output_scp_files = scp_output.output_scp_files,
-			sccloud_version = sccloud_version,
+			cumulus_version = cumulus_version,
 			zones = zones,
 			disk_space = disk_space,
 			preemptible = preemptible
@@ -433,7 +433,7 @@ workflow cumulus {
 
 	
 	output {
-		File? output_10x_h5 = aggregate_matrices.output_h5sc
+		File? output_10x_h5 = aggregate_matrices.output_h5`
 		File output_h5ad = cluster.output_h5ad
 		Array[File] output_seurat_h5ad = cluster.output_seurat_h5ad
 		Array[File] output_filt_xlsx = cluster.output_filt_xlsx
