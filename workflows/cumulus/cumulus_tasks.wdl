@@ -46,7 +46,7 @@ task run_cumulus_aggregate_matrices {
 	}
 
 	runtime {
-		docker: "cumulus/cumulus:${cumulus_version}"
+		docker: "cumulusprod/cumulus:${cumulus_version}"
 		zones: zones
 		memory: memory
 		bootDiskSizeGb: 12
@@ -290,7 +290,7 @@ task run_cumulus_cluster {
 	}
 
 	runtime {
-		docker: "cumulus/cumulus:${cumulus_version}"
+		docker: "cumulusprod/cumulus:${cumulus_version}"
 		zones: zones
 		memory: memory
 		bootDiskSizeGb: 12
@@ -387,7 +387,7 @@ task run_cumulus_de_analysis {
 	}
 
 	runtime {
-		docker: "cumulus/cumulus:${cumulus_version}"
+		docker: "cumulusprod/cumulus:${cumulus_version}"
 		zones: zones
 		memory: memory
 		bootDiskSizeGb: 12
@@ -476,7 +476,7 @@ task run_cumulus_plot {
 	}
 
 	runtime {
-		docker: "cumulus/cumulus:${cumulus_version}"
+		docker: "cumulusprod/cumulus:${cumulus_version}"
 		zones: zones
 		memory: memory
 		bootDiskSizeGb: 12
@@ -507,7 +507,7 @@ task run_cumulus_scp_output {
 	}
 
 	runtime {
-		docker: "cumulus/cumulus:${cumulus_version}"
+		docker: "cumulusprod/cumulus:${cumulus_version}"
 		zones: zones
 		memory: memory
 		bootDiskSizeGb: 12
@@ -699,7 +699,7 @@ task run_cumulus_subcluster {
 	}
 
 	runtime {
-		docker: "cumulus/cumulus:${cumulus_version}"
+		docker: "cumulusprod/cumulus:${cumulus_version}"
 		zones: zones
 		memory: memory
 		bootDiskSizeGb: 12
@@ -757,7 +757,7 @@ task organize_results {
 	}
 
 	runtime {
-		docker: "cumulus/cumulus:${cumulus_version}"
+		docker: "cumulusprod/cumulus:${cumulus_version}"
 		zones: zones
 		memory: "30 GB"
 		bootDiskSizeGb: 12
@@ -802,7 +802,7 @@ task generate_hashing_cite_seq_tasks {
 	}
 
 	runtime {
-		docker: "cumulus/cumulus:${cumulus_version}"
+		docker: "cumulusprod/cumulus:${cumulus_version}"
 		zones: zones
 		preemptible: preemptible
 	}
@@ -873,7 +873,7 @@ task run_cumulus_demuxEM {
 	}
 
 	runtime {
-		docker: "cumulus/cumulus:${cumulus_version}"
+		docker: "cumulusprod/cumulus:${cumulus_version}"
 		zones: zones
 		memory: memory
 		bootDiskSizeGb: 12
@@ -920,7 +920,7 @@ task run_cumulus_merge_rna_adt {
 	}
 
 	runtime {
-		docker: "cumulus/cumulus:${cumulus_version}"
+		docker: "cumulusprod/cumulus:${cumulus_version}"
 		zones: zones
 		memory: memory
 		bootDiskSizeGb: 12

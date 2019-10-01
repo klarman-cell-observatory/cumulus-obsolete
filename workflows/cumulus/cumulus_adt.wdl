@@ -135,7 +135,7 @@ task run_generate_count_matrix_ADTs {
 	}
 
 	runtime {
-		docker: "cumulus/cumulus:${cumulus_version}"
+		docker: "cumulusprod/cumulus:${cumulus_version}"
 		zones: zones
 		memory: memory
 		bootDiskSizeGb: 12

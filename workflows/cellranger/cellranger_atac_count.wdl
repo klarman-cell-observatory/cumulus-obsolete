@@ -118,7 +118,7 @@ task run_cellranger_atac_count {
 	}
 
 	runtime {
-		docker: "cumulus/cellranger-atac:${cellranger_atac_version}"
+		docker: "cumulusprod/cellranger-atac:${cellranger_atac_version}"
 		zones: zones
 		memory: memory
 		bootDiskSizeGb: 12

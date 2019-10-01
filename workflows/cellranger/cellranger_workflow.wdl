@@ -331,7 +331,7 @@ task generate_bcl_csv {
 	}
 
 	runtime {
-		docker: "cumulus/cellranger:${cellranger_version}"
+		docker: "cumulusprod/cellranger:${cellranger_version}"
 		zones: zones
 		preemptible: "${preemptible}"
 	}
@@ -464,7 +464,7 @@ task generate_count_config {
 	}
 
 	runtime {
-		docker: "cumulus/cellranger:${cellranger_version}"
+		docker: "cumulusprod/cellranger:${cellranger_version}"
 		zones: zones
 		preemptible: "${preemptible}"
 	}
@@ -504,7 +504,7 @@ task collect_summaries {
 	}
 
 	runtime {
-		docker: "cumulus/cellranger:${cellranger_version}"
+		docker: "cumulusprod/cellranger:${cellranger_version}"
 		zones: zones
 		preemptible: "${preemptible}"
 	}

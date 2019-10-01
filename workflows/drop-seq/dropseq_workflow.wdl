@@ -273,7 +273,7 @@ task collect_summary {
 		bootDiskSizeGb: 12
 		disks: "local-disk 2 HDD"
 		memory:"1GB"
-		docker: "cumulus/dropseq:${drop_seq_tools_version}"
+		docker: "cumulusprod/dropseq:${drop_seq_tools_version}"
 		zones: zones
 		preemptible: "${preemptible}"
 	}
@@ -390,7 +390,7 @@ task generate_count_config {
 		bootDiskSizeGb: 12
 		disks: "local-disk 1 HDD"
 		memory:"1GB"
-		docker: "cumulus/dropseq:${drop_seq_tools_version}"
+		docker: "cumulusprod/dropseq:${drop_seq_tools_version}"
 		zones: zones
 		preemptible: "${preemptible}"
 	}
